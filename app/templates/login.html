@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Login – Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 3rem; }
+    form { max-width: 320px; }
+    input { width: 100%; padding: .5rem; margin: .5rem 0; }
+    .msg { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Login (Test)</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="msg">{{ messages[0] }}</div>
+    {% endif %}
+  {% endwith %}
+  <form action="{{ url_for('login') }}" method="post" autocomplete="off">
+    <label>Benutzername</label>
+    <input name="username" required />
+    <label>Passwort</label>
+    <input name="password" type="password" required />
+    <button type="submit">Einloggen</button>
+  </form>
+
+  <p>Test-Zugang: <b>tester</b> / <b>secret123</b></p>
+</body>
+</html>
