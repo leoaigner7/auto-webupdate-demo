@@ -36,5 +36,5 @@ def logout():
 	session.clear()
 	return redirect(url_for("index"))
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
-
+    print("🚀 Flask server starting on port 8080...", flush=True)
+    app.run(host="0.0.0.0", port=8080, debug=False)
