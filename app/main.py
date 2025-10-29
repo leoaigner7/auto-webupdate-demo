@@ -32,6 +32,6 @@ def dashboard():
     return render_template("dashboard.html", user=session.get("username"))
 
 @app.route("/logout")
-def log():
-
-return redirect("/login")
+def logout():
+	session.clear()
+	return redirect(url_for("index"))
