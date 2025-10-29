@@ -35,6 +35,12 @@ def dashboard():
 def logout():
 	session.clear()
 	return redirect(url_for("index"))
+
+@app.route("/health")
+def health():
+    return "OK", 200
+
 if __name__ == "__main__":
     print("🚀 Flask server starting on port 8080...", flush=True)
     app.run(host="0.0.0.0", port=8080, debug=False)
+
