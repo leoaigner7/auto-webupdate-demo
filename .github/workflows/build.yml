@@ -50,6 +50,7 @@ jobs:
         with:
           host: "10.0.2.15"
           username: "leo"
+          port: 22
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             docker pull ghcr.io/leoaigner7/auto-webapp:latest
