@@ -35,7 +35,11 @@ jobs:
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-
+      
+- name: Install dependencies
+        run: |
+          pip install -r app/requirements.txt
+          pip install pytest
       - name: Run tests
         run: |
           pip install pytest
