@@ -45,15 +45,3 @@ jobs:
         run: |
           pip install pytest
           pytest app/tests
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: "10.0.2.15"
-          username: "leo"
-          port: 22
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            docker pull ghcr.io/leoaigner7/auto-webapp:latest
-            docker stop auto-webapp || true
-            docker rm auto-webapp || true
-            docker run -d --restart always -p 8080:8080 --name auto-webapp ghcr.io/leoaigner7/auto-webapp:latest
