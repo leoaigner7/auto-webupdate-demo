@@ -48,8 +48,8 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
+          host: "10.0.2.15"
+          username: "leo"
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             docker pull ghcr.io/leoaigner7/auto-webapp:latest
