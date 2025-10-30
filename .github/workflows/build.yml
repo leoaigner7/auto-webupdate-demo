@@ -1,17 +1,29 @@
 name: Build & Publish to GHCR
-on: { push: { branches: [ "main" ] } }
-env: { REGISTRY: ghcr.io, IMAGE_NAME: auto-webapp }
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: auto-webapp
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: { contents: read, packages: write }
+
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
+
       - uses: docker/build-push-action@v6
         with:
           context: .
@@ -20,7 +32,11 @@ jobs:
           tags: |
             ghcr.io/leoaigner7/auto-webapp:latest
             ghcr.io/leoaigner7/auto-webapp:${{ github.run_number }}
-      - name: Run tests  
+
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+
+      - name: Run tests
         run: |
           pip install pytest
           pytest app/tests
