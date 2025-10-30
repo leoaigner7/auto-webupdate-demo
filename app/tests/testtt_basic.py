@@ -1,2 +1,2 @@
-def test_index_page():
+def test_dummy():
     assert True
